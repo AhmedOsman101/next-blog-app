@@ -21,10 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="dark">
-			<body className={`${font.className} bg-gray-950 text-gray-100`}>
+			<body
+				className={`${font.className} bg-gray-950 text-gray-100 grid grid-rows-[auto_1fr_auto] min-h-dvh`}>
 				<Navbar />
 				<hr />
-				<main className="flex min-h-dvh flex-col items-center px-20">
+				<main className="flex flex-col items-center px-20">
 					{children}
 				</main>
 				<Footer />
