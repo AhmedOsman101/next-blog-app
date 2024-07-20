@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const APP_NAME = process.env.APP_NAME || "Next Blog App";
+const APP_NAME = process.env.APP_NAME;
 
 const Footer = () => {
 	return (
