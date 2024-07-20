@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
 			<body
 				className={`${font.className} bg-gray-950 text-gray-100 grid grid-rows-[auto_1fr_auto] min-h-dvh`}>
 				<Navbar />
-				<hr />
 				<main className="flex flex-col items-center px-20">
 					{children}
 				</main>

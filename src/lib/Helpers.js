@@ -1,5 +1,7 @@
+const validator = require("validator");
+
 /**
- * @typedef {Object} InputData
+ * @typedef {Object} InputFields
  * @property {string} [username] - The username to validate.
  * @property {string} [name] - The name to validate.
  * @property {string} [email] - The email address to validate.
@@ -8,24 +10,24 @@
  */
 
 /**
- * Validates an object containing user input data.
- *
- * @param {InputData} data - An object containing string fields to be validated.
- *
- * @returns {Object} An object containing validation results.
- * @returns {Object.<string, string>} errors - An object with field names as keys and error messages as values.
- * @returns {boolean} isValid - Indicates whether the input data is valid (true) or not (false).
+ * @typedef {Object} ValidationResult
+ * @property {InputFields} errors - An object with field names as keys and error messages as values.
+ * @property {boolean} isValid - Indicates whether the input data is valid (true) or not (false).
  */
 
-export const validator = (data) => {
+/**
+ * Validates an object containing user input data.
+ *
+ * @param {InputFields} data - An object containing string fields to be validated.
+ *
+ * @returns {ValidationResult} An object containing validation results.
+ */
+
+const validation = (data) => {
 	const errors = {};
+	let result = {};
 
-	const emailRegex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim;
-
-	const passwordRegex =
-		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}$/;
-
-	const usernameRegex = /^[A-Za-z0-9]{3,20}$/i;
+	const usernameRegex = /^[A-Za-z0-9\s]{3,20}$/i;
 
 	for (const [key, field] of Object.entries(data)) {
 		// Empty fields validation
@@ -55,18 +57,22 @@ export const validator = (data) => {
 		// Email validation
 		else if (key === "email") {
 			// regex validation
-			if (!emailRegex.test(field)) errors[key] = "Invalid email address";
+			if (!validator.isEmail(field))
+				errors[key] = "Invalid email address";
 		}
 
 		// Password validation
 		else if (key === "password") {
+			// FOR DEBUGGING REMOVE ON PRODUCTION!!!
+			if (field === "123") continue;
+
 			// length validation
-			if (field.length < 8 || field.length > 12) {
+			if (field.length < 8 || field.length > 20) {
 				errors[key] =
-					"Password must be between 8 and 12 characters long";
+					"Password must be between 8 and 20 characters long";
 			}
 			// regex validation
-			else if (!passwordRegex.test(field)) {
+			else if (!validator.isStrongPassword(field)) {
 				errors[key] =
 					"Password must include an uppercase letter, lowercase letter, number, and a special character { $@$!%*?& }.";
 			}
@@ -81,5 +87,8 @@ export const validator = (data) => {
 	}
 
 	const isValid = Object.keys(errors).length === 0;
-	return { errors, isValid };
+	result = { errors, isValid };
+	return result;
 };
+
+module.exports = { validator: validation };

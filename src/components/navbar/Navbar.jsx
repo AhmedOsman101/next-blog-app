@@ -35,7 +35,7 @@ const APP_NAME = process.env.APP_NAME || "Next Blog App";
 const Navbar = () => {
 	return (
 		<>
-			<header className="p-4">
+			<header className="p-4 sticky top-0 bg-gray-950 z-[999]">
 				<div className="container flex justify-between h-16 mx-auto">
 					<Link
 						rel="noopener noreferrer"
@@ -83,6 +83,7 @@ const Navbar = () => {
 					</button>
 				</div>
 			</header>
+			<hr className="sticky top-[102px]" />
 		</>
 	);
 };

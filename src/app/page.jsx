@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
 	return (
 		<>
-			<div className="flex justify-between w-full gap-24 items-stretch">
+			<div className="flex justify-between w-full gap-24 items-stretch mt-2 mb-6 md:mb-8">
 				<div className="flex-1 flex flex-col gap-12">
 					<h1 className="text-[65px]">Creative Thoughts Agency.</h1>
 					<p className="text-xl">
@@ -12,12 +13,16 @@ const Home = () => {
 						assumenda dolore.
 					</p>
 					<div className="flex gap-5">
-						<button className="px-5 py-4 min-w-[7.5rem] bg-blue-500 rounded-md">
+						<Link
+							href="about"
+							className="text-center px-5 py-4 min-w-[7.5rem] bg-blue-500 rounded-md">
 							Learn More
-						</button>
-						<button className=" rounded-md px-5 py-4 min-w-[7.5rem] bg-gray-200 text-gray-950">
+						</Link>
+						<Link
+							href="contact"
+							className="text-center rounded-md px-5 py-4 min-w-[7.5rem] bg-gray-200 text-gray-950">
 							Contact
-						</button>
+						</Link>
 					</div>
 					<div className="w-[31.25rem] h-12 relative grayscale-[1]">
 						<Image

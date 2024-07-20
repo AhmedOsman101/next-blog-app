@@ -6,7 +6,7 @@ const Footer = () => {
 	return (
 		<>
 			<footer>
-				<hr className="my-6 md:my-8" />
+				<hr className="mb-6 md:mb-8" />
 				<div className="container p-6 pt-0 mx-auto">
 					<div className="flex items-center justify-between">
 						<Link
