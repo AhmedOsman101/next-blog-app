@@ -49,7 +49,7 @@ const About = () => {
 						src="/imgs/about.png"
 						alt="about image"
 						fill
-						className="object-contain"
+						className="object-scale-down"
 					/>
 				</div>
 			</div>
