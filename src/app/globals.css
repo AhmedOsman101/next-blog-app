@@ -3,13 +3,21 @@
 @tailwind utilities;
 
 * {
-	@apply capitalize transition duration-500;
+	@apply capitalize transition duration-500 text-gray-100;
+}
+
+hr {
+	@apply border-gray-700;
 }
 
 .loader {
 	@apply border-t-blue-400;
 	-webkit-animation: spinner 1.5s linear infinite;
 	animation: spinner 1.5s linear infinite;
+}
+
+.debug {
+	@apply border-2 border-rose-600;
 }
 
 @-webkit-keyframes spinner {
