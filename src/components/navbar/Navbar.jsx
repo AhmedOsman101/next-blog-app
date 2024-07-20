@@ -77,12 +77,12 @@ const Navbar = () => {
 								strokeLinecap="round"
 								strokeLinejoin="round"
 								strokeWidth="2"
-								d="M4 6h16M4 12h16M4 18h16"></path>
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
 						</svg>
 					</button>
 				</div>
 			</header>
-			<hr className="-my-2 mb-2" />
 		</>
 	);
 };

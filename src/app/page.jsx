@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const Home = () => {
 	return (
-		<main className="flex min-h-dvh flex-col items-center">
-			<div className="flex justify-between w-full px-20 gap-24 items-stretch">
+		<>
+			<div className="flex justify-between w-full gap-24 items-stretch">
 				<div className="flex-1 flex flex-col gap-12">
 					<h1 className="text-[65px]">Creative Thoughts Agency.</h1>
 					<p className="text-xl">
@@ -33,7 +33,7 @@ const Home = () => {
 					<Image src="/imgs/hero.svg" alt="hero" fill />
 				</div>
 			</div>
-		</main>
+		</>
 	);
 };
 
