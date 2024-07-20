@@ -1,4 +1,4 @@
-const Home = () => {
+const Blog = () => {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
 			hello world
@@ -6,4 +6,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default Blog;
