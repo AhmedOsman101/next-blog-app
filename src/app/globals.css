@@ -2,4 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
+* {
+	@apply capitalize transition duration-500;
+}
