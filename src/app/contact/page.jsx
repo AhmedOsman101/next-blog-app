@@ -1,9 +1,9 @@
-const Blog = () => {
+const Contact = () => {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			hello Blog
+			hello Contact
 		</main>
 	);
 };
 
-export default Blog;
+export default Contact;

@@ -1,9 +1,9 @@
-const Blog = () => {
+const Register = () => {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			hello Blog
+			hello Register
 		</main>
 	);
 };
 
-export default Blog;
+export default Register;
