@@ -30,17 +30,19 @@ const links = [
 const isAuth = true;
 const isAdmin = true;
 
+const APP_NAME = process.env.APP_NAME || "Next Blog App";
+
 const Navbar = () => {
 	return (
 		<>
-			<header className="p-4 text-gray-100 bg-gray-700">
+			<header className="p-4">
 				<div className="container flex justify-between h-16 mx-auto">
 					<Link
 						rel="noopener noreferrer"
 						href="/"
 						aria-label="Back to homepage"
-						className="flex items-center p-2">
-						Othman
+						className="flex items-center p-2 font-bold text-2xl">
+						{APP_NAME}
 					</Link>
 					<ul className="items-stretch hidden space-x-3 md:flex">
 						{links.map((link) => {
@@ -80,6 +82,7 @@ const Navbar = () => {
 					</button>
 				</div>
 			</header>
+			<hr className="-my-2 mb-2" />
 		</>
 	);
 };
