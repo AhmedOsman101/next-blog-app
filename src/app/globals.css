@@ -20,13 +20,32 @@ hr {
 	@apply border-2 border-rose-600;
 }
 
-@-webkit-keyframes spinner {
-	0% {
-		-webkit-transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-	}
+.Loader-1 {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.Loader-2 {
+	width: 6rem;
+	height: 6rem;
+	border: 8px solid #d1d5db;
+	color: #60a5fa;
+	font-size: 2.25rem;
+	animation: spinner 1s linear infinite;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top-color: #60a5fa;
+	border-radius: 50%;
+}
+
+#swal2-html-container:has(.Loader-1) {
+	overflow-y: hidden !important;
+	padding: 1.5rem;
 }
 
 @keyframes spinner {
