@@ -1,7 +1,7 @@
 "use client";
 
 import InputError from "@/components/InputError";
-import { validator } from "@/lib/Helpers";
+import { Validator } from "@/lib/Helpers";
 import { Success } from "@/lib/SweetAlert";
 import Image from "next/image";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const Contact = () => {
 		const form = e.target;
 
 		// validate the inputs
-		const { errors, isValid } = validator({
+		const { errors, isValid } = Validator({
 			name: form.name.value,
 			email: form.email.value,
 			message: form.message.value,

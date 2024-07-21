@@ -1,39 +1,39 @@
+import { StringLimit } from "@/lib/Helpers";
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = () => {
+const Card = ({ post }) => {
 	return (
 		<>
-			<div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-				<div className="relative w-full h-[14.8rem]">
+			<div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 grid-rows-[auto_1fr] grid">
+				<Link
+					href={`blog/${post.id}`}
+					className="relative w-full h-[14.8rem]">
 					<Image
 						fill
 						className="object-scale-down rounded-t-lg"
 						src="https://images.pexels.com/photos/10147934/pexels-photo-10147934.jpeg"
 						alt="Article Image"
 					/>
-				</div>
+				</Link>
 
-				<div className="p-6 pt-4">
-					<div>
+				<div className="p-6 pt-4 grid card-body">
+					<div className="card-title">
 						<Link
-							href="blog/1"
-							className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline">
-							I Built A Successful Blog In One Year
+							href={`blog/${post.id}`}
+							className="block mt-2 text-lg font-semibold hover:underline w-fit">
+							{StringLimit(post.title, 50)}
 						</Link>
-						<p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit. Molestie parturient et sem ipsum volutpat vel.
-							Natoque sem et aliquam mauris egestas quam volutpat
-							viverra. In pretium nec senectus erat. Et malesuada
-							lobortis.
+					</div>
+
+					<div className="card-content mt-2">
+						<p className="text-sm text-gray-600 dark:text-gray-400">
+							{StringLimit(post.body, 150)}
 						</p>
 					</div>
 
-					<div className="mt-4">
-						<div className="flex items-center">
-							<div className="flex items-center">
-								{/* <div className="relative">
+					<div className="card-footer mt-4 flex flex-col">
+						{/* <div className="relative">
 									<Image
 										fill
 										className="object-cover h-10 rounded-full"
@@ -41,16 +41,14 @@ const Card = () => {
 										alt="Avatar"
 									/>
 								</div> */}
-								<Link
-									href="#"
-									className="mx-2 font-semibold text-gray-700 dark:text-gray-200">
-									John Doe
-								</Link>
-							</div>
-							<span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-								21 SEP 2015
-							</span>
-						</div>
+						<Link
+							href="#"
+							className="font-semibold text-gray-700 dark:text-gray-200">
+							John Doe
+						</Link>
+						<span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+							21 SEP 2015
+						</span>
 					</div>
 				</div>
 			</div>

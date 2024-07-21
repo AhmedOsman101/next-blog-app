@@ -1,7 +1,16 @@
+import axios from "axios";
 import Image from "next/image";
 
-const SinglePost = ({ params }) => {
+const getData = async (id) => {
+	const response = await axios.get(`http://localhost:5000/blog/${id}`);
+
+	return response.data;
+};
+
+const SinglePost = async ({ params }) => {
 	const { id } = params;
+
+	const post = await getData(id);
 
 	return (
 		<section>
@@ -20,25 +29,27 @@ const SinglePost = ({ params }) => {
 						/>
 					</div>
 
-					<div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
-						<p className="text-sm text-blue-400 uppercase">
-							21 SEP 2015
-						</p>
+					{post && (
+						<div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+							<p className="text-sm text-blue-400 uppercase">
+								21 SEP 2015
+							</p>
 
-						<p className="block mt-4 text-2xl font-semibold">
-							All the features you want to know
-						</p>
+							<p className="block mt-4 text-2xl font-semibold">
+								{post.title}
+							</p>
 
-						<p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Iure veritatis sint autem nesciunt, laudantium
-							quia tempore delect
-						</p>
+							<p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Iure veritatis sint autem
+								nesciunt, laudantium quia tempore delect
+							</p>
 
-						<h1 className="font-bold text-gray-700 dark:text-gray-200 mt-6">
-							Amelia. Anderson
-						</h1>
-					</div>
+							<h1 className="font-bold text-gray-700 dark:text-gray-200 mt-6">
+								Jane Doe
+							</h1>
+						</div>
+					)}
 				</div>
 			</div>
 		</section>

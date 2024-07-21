@@ -57,8 +57,8 @@ const Navbar = () => {
 									/>
 								)}
 
-								<button className="flex space-x-2 rounded-lg px-4 py-3 items-center bg-blue-400 self-center">
-									<span>Logout</span>
+								<button className="flex space-x-2 rounded-lg px-4 py-3 items-center bg-blue-500 self-center">
+									<span className="text-white">Logout</span>
 									<TbLogout />
 								</button>
 							</>
