@@ -6,10 +6,6 @@ import { Success } from "@/lib/SweetAlert";
 import Image from "next/image";
 import { useState } from "react";
 
-export const metadata = {
-	title: "Contact Page",
-};
-
 const Contact = () => {
 	const [errors, setErrors] = useState({});
 
