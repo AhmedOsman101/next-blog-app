@@ -44,7 +44,7 @@ const Navbar = () => {
 						className="flex items-center p-2 font-bold text-2xl">
 						{APP_NAME}
 					</Link>
-					<ul className="items-stretch hidden space-x-3 md:flex">
+					<div className="items-stretch hidden space-x-3 md:flex">
 						{links.map((link) => {
 							return <NavLink link={link} key={link.label} />;
 						})}
@@ -65,7 +65,7 @@ const Navbar = () => {
 						) : (
 							<NavLink link={{ label: "Login", to: "/login" }} />
 						)}
-					</ul>
+					</div>
 					<button className="flex justify-end p-4 md:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
