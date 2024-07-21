@@ -7,7 +7,7 @@ export const metadata = {
 const About = () => {
 	return (
 		<>
-			<div className="flex gap-24">
+			<div className="flex gap-24 mb-12">
 				<div className="flex flex-1 flex-col gap-12">
 					<h2 className="text-3xl text-blue-500 font-bold mt-12">
 						About Agency
