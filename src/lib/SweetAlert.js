@@ -6,8 +6,8 @@ export const Loader = () => {
 	MySwal.fire({
 		title: "Loading...",
 		html: `
-		<div class="Loader-1">
-			<div class="Loader-2"></div>
+		<div className="Loader-1">
+			<div className="Loader-2"></div>
 		</div>`,
 		allowOutsideClick: false,
 		allowEscapeKey: false,
@@ -15,10 +15,15 @@ export const Loader = () => {
 	});
 };
 
-export const Success = (html, link = null, navigate = null) => {
+export const Success = (
+	title = "Succeed!",
+	html,
+	link = null,
+	navigate = null
+) => {
 	MySwal.fire({
-		title: "Succeed!",
-		html: html,
+		title,
+		html,
 		icon: "success",
 		didClose: () => {
 			if (link && navigate) navigate(link);
@@ -26,11 +31,11 @@ export const Success = (html, link = null, navigate = null) => {
 	});
 };
 
-export const Fail = (title = null, text) => {
+export const Fail = (title = "Oops...", text) => {
 	MySwal.fire({
 		icon: "error",
-		title: title || "Oops...",
-		text: text,
+		title,
+		text,
 	});
 };
 

@@ -7,6 +7,7 @@ const validator = require("validator");
  * @property {string} [email] - The email address to validate.
  * @property {string} [password] - The password to validate.
  * @property {string} [password_confirmation] - The password confirmation to validate.
+ * @property {string} [message] - The message the user would enter in the contact form.
  */
 
 /**
@@ -83,6 +84,12 @@ const validation = (data) => {
 			// matching passwords validation
 			if (field !== data?.password)
 				errors[key] = "Passwords do not match";
+		}
+
+		// Message validation
+		else if (key === "message") {
+			if (field.length < 3)
+				errors[key] = "Message must be at least 3 characters";
 		}
 	}
 
