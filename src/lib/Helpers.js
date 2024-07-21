@@ -24,7 +24,7 @@ const validator = require("validator");
  * @returns {ValidationResult} An object containing validation results.
  */
 
-const validation = (data) => {
+const Validator = (data) => {
 	const errors = {};
 	let result = {};
 
@@ -98,4 +98,18 @@ const validation = (data) => {
 	return result;
 };
 
-module.exports = { validator: validation };
+/**
+ * Truncates a string to a specified limit and appends "..." if the string exceeds the limit.
+ * @param {string} string - The input string that you want to limit in terms of length.
+ * @param {number} limit - The maximum length that the input `string` should be truncated to. If the length of the input `string` exceeds this `limit`, it will be truncated and "..." will be appended to indicate that it has been shortened.
+ * @returns {string} The truncated string or the original string if length is below limit.
+ */
+const StringLimit = (string, limit) => {
+	if (string.length > limit) {
+		return `${string.substring(0, limit - 3)}...`;
+	}
+
+	return string;
+};
+
+module.exports = { Validator, StringLimit };
