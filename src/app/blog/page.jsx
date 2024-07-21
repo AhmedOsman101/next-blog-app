@@ -1,5 +1,9 @@
 import Card from "@/components/Card";
 
+export const metadata = {
+	title: "Blogs Page",
+};
+
 const Blog = () => {
 	return (
 		<>
