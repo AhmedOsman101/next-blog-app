@@ -46,7 +46,12 @@ const Navbar = () => {
 					</Link>
 					<div className="items-stretch hidden space-x-3 md:flex">
 						{links.map((link) => {
-							return <NavLink link={link} key={link.label} />;
+							return (
+								<NavLink
+									link={link}
+									key={link.label}
+								/>
+							);
 						})}
 
 						{isAuth ? (
