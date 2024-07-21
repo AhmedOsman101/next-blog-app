@@ -1,13 +1,42 @@
-"use client"
+"use client";
 
+import InputError from "@/components/InputError";
+import { validator } from "@/lib/Helpers";
+import { Success } from "@/lib/SweetAlert";
 import Image from "next/image";
-
-const handleSubmit = (e) => {
-	e.preventDefault();
-	console.log("Submitted");
-};
+import { useState } from "react";
 
 const Contact = () => {
+	const [errors, setErrors] = useState({});
+
+	const handleSubmit = (e) => {
+		// prevent page from reloading
+		e.preventDefault();
+
+		// access the form
+		const form = e.target;
+
+		// validate the inputs
+		const { errors, isValid } = validator({
+			name: form.name.value,
+			email: form.email.value,
+			message: form.message.value,
+		});
+
+		if (isValid) {
+			// display success alert
+			Success("Your message has been sent!");
+
+			// reset form elements
+			form.name.value = "";
+			form.email.value = "";
+			form.message.value = "";
+			setErrors({});
+		} else {
+			setErrors(errors);
+		}
+	};
+
 	return (
 		<>
 			<div className="my-6 max-w-screen-xl h-full grid place-items-center">
@@ -33,40 +62,52 @@ const Contact = () => {
 					<form
 						noValidate
 						onSubmit={handleSubmit}
-						className="space-y-6"
+						className="space-y-4"
 						method="POST">
 						<div>
-							<label htmlFor="name" className="text-sm">
+							<label
+								htmlFor="name"
+								className="text-sm">
 								Full name
 							</label>
 							<input
 								id="name"
+								name="name"
 								type="text"
 								placeholder="John Doe"
 								className="w-full p-3 rounded-lg bg-gray-100 form-input text-gray-900"
 							/>
+							<InputError message={errors?.name} />
 						</div>
 						<div>
-							<label htmlFor="email" className="text-sm">
+							<label
+								htmlFor="email"
+								className="text-sm">
 								Email
 							</label>
 							<input
 								id="email"
 								type="email"
+								name="email"
 								className="w-full p-3 rounded-lg bg-gray-100 form-input text-gray-900"
 								placeholder="JohnDoe@mail.com"
 							/>
+							<InputError message={errors?.email} />
 						</div>
 						<div>
-							<label htmlFor="message" className="text-sm">
+							<label
+								htmlFor="message"
+								className="text-sm">
 								Message
 							</label>
 							<textarea
 								id="message"
 								placeholder="Tell us what you need"
 								rows="3"
+								name="message"
 								className="w-full p-3 rounded-lg bg-gray-100 form-textarea text-gray-900"
 							/>
+							<InputError message={errors?.message} />
 						</div>
 						<button
 							type="submit"
