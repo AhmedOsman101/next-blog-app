@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-	@apply capitalize transition duration-500 text-gray-100;
+	@apply capitalize transition duration-500;
 }
 
 hr {
