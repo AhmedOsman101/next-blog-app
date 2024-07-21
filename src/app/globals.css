@@ -48,6 +48,27 @@ hr {
 	padding: 1.5rem;
 }
 
+.card-body {
+	display: grid;
+	grid-template-areas:
+		"title"
+		"content"
+		"footer";
+
+	grid-template-rows: auto 1fr auto;
+}
+
+.card-title {
+	grid-area: title;
+}
+
+.card-content {
+	grid-area: content;
+}
+.card-footer {
+	grid-area: footer;
+}
+
 @keyframes spinner {
 	0% {
 		transform: rotate(0deg);
