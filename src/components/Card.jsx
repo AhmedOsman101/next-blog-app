@@ -1,6 +1,6 @@
-import { StringLimit } from "@/lib/Helpers";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { StringLimit } from "@/lib/Helpers";
 
 const Card = ({ post }) => {
 	return (
