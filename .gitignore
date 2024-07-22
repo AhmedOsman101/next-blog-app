@@ -17,7 +17,7 @@
 # misc
 .DS_Store
 *.pem
-db.json
+**/test.js
 
 # debug
 npm-debug.log*
