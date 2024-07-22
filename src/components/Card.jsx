@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { StringLimit } from "@/lib/Helpers";
+import { StringLimit, FormatDate } from "@/lib/Helpers";
 
 const Card = ({ post }) => {
 	return (
@@ -8,11 +8,15 @@ const Card = ({ post }) => {
 			<div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 grid-rows-[auto_1fr] grid">
 				<Link
 					href={`blog/${post.id}`}
-					className="relative w-full h-[14.8rem]">
+					className={
+						post?.image
+							? "relative w-full md:h-48 lg:h-56"
+							: "hidden"
+					}>
 					<Image
 						fill
-						className="object-scale-down rounded-t-lg"
-						src="https://images.pexels.com/photos/10147934/pexels-photo-10147934.jpeg"
+						className="object-cover rounded-t-lg"
+						src={post?.image}
 						alt="Article Image"
 					/>
 				</Link>
@@ -32,23 +36,25 @@ const Card = ({ post }) => {
 						</p>
 					</div>
 
-					<div className="card-footer mt-4 flex flex-col">
-						{/* <div className="relative">
-									<Image
-										fill
-										className="object-cover h-10 rounded-full"
-										src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-										alt="Avatar"
-									/>
-								</div> */}
-						<Link
-							href="#"
-							className="font-semibold text-gray-700 dark:text-gray-200">
-							John Doe
-						</Link>
-						<span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-							21 SEP 2015
-						</span>
+					<div className="flex items-center gap-3 mt-4">
+						<div className="relative h-10 w-10">
+							<Image
+								fill
+								className="object-cover rounded-full"
+								src={post.user?.image}
+								alt="Avatar"
+							/>
+						</div>
+						<div className="card-footer flex flex-col">
+							<Link
+								href="#"
+								className="font-semibold text-gray-700 dark:text-gray-200">
+								{post.user.name}
+							</Link>
+							<span className="mx-1 text-xs text-gray-600 dark:text-gray-300 uppercase">
+								{FormatDate(post.created_at)}
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
