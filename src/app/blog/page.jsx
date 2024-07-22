@@ -6,9 +6,13 @@ export const metadata = {
 };
 
 const getData = async () => {
-	const response = await axios.get("http://localhost:5000/blog");
-
-	return response.data;
+	try {
+		const response = await axios.get("http://localhost:5000/blog");
+		
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const Blog = async () => {

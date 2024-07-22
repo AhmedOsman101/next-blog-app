@@ -2,9 +2,12 @@ import axios from "axios";
 import Image from "next/image";
 
 const getData = async (id) => {
-	const response = await axios.get(`http://localhost:5000/blog/${id}`);
-
-	return response.data;
+	try {
+		const response = await axios.get(`http://localhost:5000/blog/${id}`);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const SinglePost = async ({ params }) => {
