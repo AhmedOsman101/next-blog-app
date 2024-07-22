@@ -46,11 +46,10 @@ const Card = ({ post }) => {
 							/>
 						</div>
 						<div className="card-footer flex flex-col">
-							<Link
-								href="#"
+							<p
 								className="font-semibold text-gray-700 dark:text-gray-200">
 								{post.user.name}
-							</Link>
+							</p>
 							<span className="mx-1 text-xs text-gray-600 dark:text-gray-300 uppercase">
 								{FormattedDate(post.created_at)}
 							</span>

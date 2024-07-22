@@ -6,6 +6,35 @@
 	@apply capitalize transition duration-500;
 }
 
+body {
+	display: grid;
+
+	grid-template-areas:
+		"navbar"
+		"hr"
+		"main"
+		"footer";
+
+	grid-template-rows: auto 3px 1fr auto;
+}
+
+header {
+	grid-area: navbar;
+}
+
+.header-hr {
+	grid-area: hr;
+}
+
+main {
+	grid-area: main;
+	@apply debug;
+}
+
+footer {
+	grid-area: footer;
+}
+
 hr {
 	@apply border-gray-700;
 }
