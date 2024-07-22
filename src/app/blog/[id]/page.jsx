@@ -1,33 +1,30 @@
-import axios from "axios";
+import { getPost } from "@/lib/Database";
+import { FormattedDate } from "@/lib/Helpers";
 import Image from "next/image";
-
-const getData = async (id) => {
-	try {
-		const response = await axios.get(`http://localhost:5000/blog/${id}`);
-		return response.data;
-	} catch (error) {
-		console.log(error);
-	}
-};
 
 const SinglePost = async ({ params }) => {
 	const { id } = params;
 
-	const post = await getData(id);
+	const post = await getPost(id);
 
 	return (
-		<section>
-			<div className="container px-6 py-8 mx-auto">
+		<section className="w-full">
+			<div className="px-6 py-8 mx-auto">
 				<h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
 					From the blog
 				</h1>
 
 				<div className="mt-6 lg:-mx-6 lg:flex lg:items-center">
-					<div className="w-full h-72 lg:mx-6 lg:w-1/2 lg:h-96 relative">
+					<div
+						className={
+							post?.image
+								? "w-full h-72 lg:mx-6 lg:w-1/2 lg:h-96 relative"
+								: "hidden"
+						}>
 						<Image
 							fill
 							className="object-cover rounded-xl"
-							src="https://images.pexels.com/photos/10147934/pexels-photo-10147934.jpeg"
+							src={post?.image}
 							alt="Article Image"
 						/>
 					</div>
@@ -35,7 +32,7 @@ const SinglePost = async ({ params }) => {
 					{post && (
 						<div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
 							<p className="text-sm text-blue-400 uppercase">
-								21 SEP 2015
+								{FormattedDate(post.created_at)}
 							</p>
 
 							<p className="block mt-4 text-2xl font-semibold">
@@ -43,14 +40,22 @@ const SinglePost = async ({ params }) => {
 							</p>
 
 							<p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Iure veritatis sint autem
-								nesciunt, laudantium quia tempore delect
+								{post.body}
 							</p>
 
-							<h1 className="font-bold text-gray-700 dark:text-gray-200 mt-6">
-								Jane Doe
-							</h1>
+							<div className="flex items-center gap-3 mt-6">
+								<div className="relative h-10 w-10">
+									<Image
+										fill
+										className="object-cover rounded-full"
+										src={post.user?.image}
+										alt="Avatar"
+									/>
+								</div>
+								<h1 className="font-bold text-gray-700 dark:text-gray-200">
+									{post.user.name}
+								</h1>
+							</div>
 						</div>
 					)}
 				</div>

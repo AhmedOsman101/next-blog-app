@@ -9,7 +9,6 @@ export const metadata = {
 const Blog = async () => {
 	const posts = await getAllPosts();
 
-	console.info(posts);
 	return (
 		<>
 			{posts && posts?.length > 0 ? (
