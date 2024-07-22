@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { StringLimit, FormatDate } from "@/lib/Helpers";
+import { StringLimit, FormattedDate } from "@/lib/Helpers";
 
 const Card = ({ post }) => {
 	return (
@@ -52,7 +52,7 @@ const Card = ({ post }) => {
 								{post.user.name}
 							</Link>
 							<span className="mx-1 text-xs text-gray-600 dark:text-gray-300 uppercase">
-								{FormatDate(post.created_at)}
+								{FormattedDate(post.created_at)}
 							</span>
 						</div>
 					</div>

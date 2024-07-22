@@ -112,4 +112,32 @@ const StringLimit = (string, limit) => {
 	return string;
 };
 
-module.exports = { Validator, StringLimit };
+/**
+ * Formats a date string into a localized, human-readable format.
+ *
+ * @param {string|number|Date} date - The date to be formatted. Can be a date string, timestamp, or Date object.
+ * @returns {string} A formatted date string in the format "MMM D, YYYY" (e.g., "1 Jan 2023").
+ *
+ * @example
+ * // Returns "1 Jan 2023"
+ * FormattedDate("2023-01-01T00:00:00Z");
+ *
+ * @example
+ * // Returns the current date in the format "D MMM YYYY"
+ * FormattedDate(new Date());
+ */
+const FormattedDate = (date) => {
+	const dateObject = new Date(date);
+
+	// format the string
+	const intl = new Intl.DateTimeFormat(undefined, {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	});
+
+	// Return the formatted string
+	return intl.format(dateObject);
+};
+
+module.exports = { Validator, StringLimit, FormattedDate };
