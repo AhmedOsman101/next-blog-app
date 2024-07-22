@@ -1,13 +1,13 @@
 import Card from "@/components/Card";
 import EmptyResource from "@/components/EmptyResource";
-import { getPosts } from "@/lib/Database";
+import { getAllPosts } from "@/lib/Database";
 
 export const metadata = {
 	title: "Blogs Page",
 };
 
 const Blog = async () => {
-	const posts = await getPosts();
+	const posts = await getAllPosts();
 
 	console.info(posts);
 	return (
