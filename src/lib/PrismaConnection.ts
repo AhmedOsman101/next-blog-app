@@ -1,4 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
+import { Prisma, PrismaClient } from "@prisma/client";
+import { DefaultArgs } from "@prisma/client/runtime/library";
 
 /**
  * DB class for managing Prisma database connection.
@@ -10,7 +11,7 @@ class DB {
 	 * @static
 	 * @private
 	 */
-	private static prisma: DB;
+	static prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>;
 
 	/**
 	 * Empty private constructor for the DB class to prevent creating new instances using the new keyword.
@@ -24,7 +25,11 @@ class DB {
 	 * @static
 	 * @returns The Prisma client instance.
 	 */
-	public static get connection(): DB {
+	public static get connection(): PrismaClient<
+		Prisma.PrismaClientOptions,
+		never,
+		DefaultArgs
+	> {
 		if (!DB.prisma) {
 			DB.prisma = new PrismaClient();
 		}
@@ -32,3 +37,5 @@ class DB {
 		return DB.prisma;
 	}
 }
+
+export default DB;
