@@ -88,7 +88,7 @@ const Navbar = () => {
 					</button>
 				</div>
 			</header>
-			<hr className="sticky top-[102px]" />
+			<hr className="sticky top-[102px] header-hr" />
 		</>
 	);
 };
