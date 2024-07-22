@@ -1,33 +1,30 @@
 import Card from "@/components/Card";
-import axios from "axios";
+import EmptyResource from "@/components/EmptyResource";
+import { getPosts } from "@/lib/Database";
 
 export const metadata = {
 	title: "Blogs Page",
 };
 
-const getData = async () => {
-	try {
-		const response = await axios.get("http://localhost:5000/blog");
-		
-		return response.data;
-	} catch (error) {
-		console.log(error);
-	}
-};
-
 const Blog = async () => {
-	const posts = await getData();
+	const posts = await getPosts();
+
+	console.info(posts);
 	return (
 		<>
-			<div className="my-7 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{posts &&
-					posts.map((post) => (
-						<Card
-							key={post.id}
-							post={post}
-						/>
-					))}
-			</div>
+			{posts && posts?.length > 0 ? (
+				<div className="my-7 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+					{posts &&
+						posts.map((post) => (
+							<Card
+								key={post.id}
+								post={post}
+							/>
+						))}
+				</div>
+			) : (
+				<EmptyResource resource={"posts"} />
+			)}
 		</>
 	);
 };
