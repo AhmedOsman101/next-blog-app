@@ -21,7 +21,7 @@ model Post {
   id         String   @id() @default(auto()) @map("_id") @db.ObjectId
   user_id    String   @db.ObjectId
   title      String   @unique
-  body       String 
+  body       String
   image      String?
   created_at DateTime @default(now())
 
