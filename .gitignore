@@ -18,6 +18,7 @@
 .DS_Store
 *.pem
 **/test.js
+**/test.json
 
 # debug
 npm-debug.log*
