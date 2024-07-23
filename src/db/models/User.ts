@@ -52,7 +52,7 @@ class User {
 		try {
 			const users = await User.prisma.user.findMany({
 				include: {
-					posts: withPosts,
+					Post: withPosts,
 				},
 			});
 			return users;
@@ -79,7 +79,7 @@ class User {
 			const user = User.prisma.user.findUnique({
 				where: { id },
 				include: {
-					posts: withPosts,
+					Post: withPosts,
 				},
 			});
 
