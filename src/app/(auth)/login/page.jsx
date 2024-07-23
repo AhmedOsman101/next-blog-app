@@ -1,16 +1,8 @@
 import Link from "next/link";
 
-import { auth, signIn } from "@/lib/auth";
-import { User } from "@/db/models/User";
+import { signIn } from "@/lib/auth";
 
 const Login = async () => {
-	const users = await User.all(true);
-	console.log(users);
-	
-
-	const session = await auth();
-	console.info(session);
-
 	const githubLogin = async () => {
 		"use server";
 		await signIn("github");
