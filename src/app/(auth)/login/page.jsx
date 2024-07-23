@@ -1,8 +1,13 @@
 import Link from "next/link";
 
 import { auth, signIn } from "@/lib/auth";
+import { User } from "@/db/models/User";
 
 const Login = async () => {
+	const users = await User.all(true);
+	console.log(users);
+	
+
 	const session = await auth();
 	console.info(session);
 

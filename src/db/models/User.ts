@@ -28,7 +28,7 @@ export interface IUser {
  * Class representing user operations in the database.
  * @class User
  */
-class User {
+export class User {
 	/**
 	 * Prisma client instance for database operations.
 	 * @private
