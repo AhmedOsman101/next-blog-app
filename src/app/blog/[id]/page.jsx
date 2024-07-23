@@ -1,11 +1,11 @@
-import { getPost } from "@/db/models/Post";
+import { Post } from "@/db/models/Post";
 import { FormattedDate } from "@/lib/Helpers";
 import Image from "next/image";
 
 const SinglePost = async ({ params }) => {
 	const { id } = params;
 
-	const post = await getPost(id);
+	const post = await Post.find(id);
 
 	return (
 		<section className="w-full">

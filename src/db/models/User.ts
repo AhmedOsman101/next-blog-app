@@ -1,37 +1,58 @@
+import { Prisma, PrismaClient } from "@prisma/client";
 import DB from "../PrismaConnection";
+import { IPost } from "./Post";
+import { DefaultArgs } from "@prisma/client/runtime/library";
 
-const prisma = DB.connection;
+export interface IUser {
+	id: string;
+	name: string;
+	email: string;
+	password: string;
+	image?: string;
+	isAdmin?: boolean;
+	posts?: IPost[] | [];
+}
 
-const getUser = async (id, withPosts = false) => {
-	try {
-		const user = prisma.user.findUnique({
-			where: { id },
-			include: {
-				posts: withPosts,
-			},
-		});
+class User {
+	protected static prisma: PrismaClient<
+		Prisma.PrismaClientOptions,
+		never,
+		DefaultArgs
+	> = DB.connection;
 
-		if (!user) {
-			throw new Error("User was not found");
+	public static async all(withPosts = false): Promise<IUser[]> {
+		try {
+			const users = await User.prisma.user.findMany({
+				include: {
+					posts: withPosts,
+				},
+			});
+			return users;
+		} catch (error) {
+			console.info("Failed to fetch users");
+			throw new Error("Failed to fetch users");
 		}
-
-		return user;
-	} catch (error) {
-		console.info("Failed to fetch the user", error);
 	}
-};
 
-const getAllUsers = async () => {
-	try {
-		const users = await prisma.user.findMany({});
-		return users;
-	} catch (error) {
-		console.info("Failed to fetch users");
-		throw new Error(error);
+	public static async find(
+		id: string,
+		withPosts = false
+	): Promise<IUser | null> {
+		try {
+			const user = User.prisma.user.findUnique({
+				where: { id },
+				include: {
+					posts: withPosts,
+				},
+			});
+
+			if (!user) {
+				throw new Error("User was not found");
+			}
+
+			return user;
+		} catch (error) {
+			console.info("Failed to fetch the user", error);
+		}
 	}
-};
-
-module.exports = {
-	getAllUsers,
-	getUser,
-};
+}

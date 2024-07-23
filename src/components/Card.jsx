@@ -46,8 +46,7 @@ const Card = ({ post }) => {
 							/>
 						</div>
 						<div className="card-footer flex flex-col">
-							<p
-								className="font-semibold text-gray-700 dark:text-gray-200">
+							<p className="font-semibold text-gray-700 dark:text-gray-200">
 								{post.user.name}
 							</p>
 							<span className="mx-1 text-xs text-gray-600 dark:text-gray-300 uppercase">
