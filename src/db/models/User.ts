@@ -83,13 +83,12 @@ class User {
 				},
 			});
 
-			if (!user) {
-				throw new Error("User was not found");
-			}
+			if (!user) return null;
 
 			return user;
 		} catch (error) {
-			console.info("Failed to fetch the user", error);
+			console.info("Failed to fetch the user");
+			throw new Error(error);
 		}
 	}
 }
