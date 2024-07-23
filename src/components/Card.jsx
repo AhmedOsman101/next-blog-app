@@ -5,7 +5,7 @@ import { StringLimit, FormattedDate } from "@/lib/Helpers";
 const Card = ({ post }) => {
 	return (
 		<>
-			<div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 grid-rows-[auto_1fr] grid">
+			<div className="overflow-hidden bg-white rounded-lg shadow-md dark:bg-slate-900 grid-rows-[auto_1fr] grid">
 				<Link
 					href={`blog/${post.id}`}
 					className={
