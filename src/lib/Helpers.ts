@@ -2,36 +2,51 @@ const validator = require("validator");
 
 /**
  * The name of the application, retrieved from the environment variables.
- * @constant {string}
- */
-const APP_NAME = process.env.APP_NAME;
+ * @constant  */
+export const APP_NAME = process.env.APP_NAME;
 
 /**
- * @typedef {Object} InputFields
- * @property {string} [username] - The username to validate.
- * @property {string} [name] - The name to validate.
- * @property {string} [email] - The email address to validate.
- * @property {string} [password] - The password to validate.
- * @property {string} [password_confirmation] - The password confirmation to validate.
- * @property {string} [message] - The message the user would enter in the contact form.
+ * Defines the shape of input fields that need to be validated.
+ *
+ * @interface IInputFields
+ * @property {string} [username] - The username field.
+ * @property {string} [name] - The name field.
+ * @property {string} [email] - The email field.
+ * @property {string} [password] - The password field.
+ * @property {string} [password_confirmation] - The password confirmation field.
+ * @property {string} [message] - The message field.
  */
+export interface IInputFields {
+	username?: string;
+	name?: string;
+	email?: string;
+	password?: string;
+	password_confirmation?: string;
+	message?: string;
+}
 
 /**
- * @typedef {Object} ValidationResult
- * @property {InputFields} errors - An object with field names as keys and error messages as values.
- * @property {boolean} isValid - Indicates whether the input data is valid (true) or not (false).
+ * Defines the shape of the validation result.
+ *
+ * @interface IValidationResult
+ * @property {IInputFields} errors - An object containing validation errors for each field.
+ * @property {boolean} isValid - A flag indicating whether the validation was successful.
  */
+
+export interface IValidationResults {
+	errors: IInputFields;
+	isValid: boolean;
+}
 
 /**
  * Validates an object containing user input data.
  *
- * @param {InputFields} data - An object containing string fields to be validated.
+ * @param data - An object containing string fields to be validated.
  *
- * @returns {ValidationResult} An object containing validation results.
+ * @returns An object containing validation results.
  */
-const Validator = (data) => {
+export const Validator = (data: IInputFields): IValidationResults => {
 	const errors = {};
-	let result = {};
 
 	const usernameRegex = /^[A-Za-z0-9\s]{3,20}$/i;
 
@@ -100,17 +115,16 @@ const Validator = (data) => {
 	}
 
 	const isValid = Object.keys(errors).length === 0;
-	result = { errors, isValid };
-	return result;
+	return { errors, isValid };
 };
 
 /**
  * Truncates a string to a specified limit and appends "..." if the string exceeds the limit.
- * @param {string} string - The input string that you want to limit in terms of length.
- * @param {number} limit - The maximum length that the input `string` should be truncated to. If the length of the input `string` exceeds this `limit`, it will be truncated and "..." will be appended to indicate that it has been shortened.
- * @returns {string} The truncated string or the original string if length is below limit.
+ * @param string - The input string that you want to limit in terms of length.
+ * @param  limit - The maximum length that the input `string` should be truncated to. If the length of the input `string` exceeds this `limit`, it will be truncated and "..." will be appended to indicate that it has been shortened.
+ * @returns The truncated string or the original string if length is below limit.
  */
-const StringLimit = (string, limit) => {
+export const StringLimit = (string: string, limit: number): string => {
 	if (string.length > limit) {
 		return `${string.substring(0, limit - 3)}...`;
 	}
@@ -121,8 +135,8 @@ const StringLimit = (string, limit) => {
 /**
  * Formats a date string into a localized, human-readable format.
  *
- * @param {string|number|Date} date - The date to be formatted. Can be a date string, timestamp, or Date object.
- * @returns {string} A formatted date string in the format "MMM D, YYYY" (e.g., "1 Jan 2023").
+ * @param date - The date to be formatted. Can be a date string, timestamp, or Date object.
+ * @returns A formatted date string in the format "MMM D, YYYY" (e.g., "1 Jan 2023").
  *
  * @example
  * // Returns "1 Jan 2023"
@@ -132,7 +146,7 @@ const StringLimit = (string, limit) => {
  * // Returns the current date in the format "D MMM YYYY"
  * FormattedDate(new Date());
  */
-const FormattedDate = (date) => {
+export const FormattedDate = (date: string | number | Date): string => {
 	const dateObject = new Date(date);
 
 	// format the string
@@ -148,17 +162,9 @@ const FormattedDate = (date) => {
 
 /**
  * Generates a formatted title for the application.
- * @param {string} title - The specific page or section title.
- * @returns {string} A formatted string combining the app name and the provided title.
+ * @param title - The specific page or section title.
+ * @returns A formatted string combining the app name and the provided title.
  */
-const GenerateTitle = (title) => {
+export const GenerateTitle = (title: string): string => {
 	return `${APP_NAME} | ${title}`;
-};
-
-module.exports = {
-	APP_NAME,
-	Validator,
-	StringLimit,
-	FormattedDate,
-	GenerateTitle,
 };
