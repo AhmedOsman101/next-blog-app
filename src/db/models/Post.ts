@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { DefaultArgs } from "@prisma/client/runtime/library";
 import DB from "../PrismaConnection";
 import { IUser } from "./User";
@@ -31,14 +31,10 @@ export interface IPost {
 export class Post {
 	/**
 	 * Prisma client instance for database operations.
-	 * @private
+	 * @public
 	 * @static
 	 */
-	protected static prisma: PrismaClient<
-		Prisma.PrismaClientOptions,
-		never,
-		DefaultArgs
-	> = DB.connection;
+	public static prisma: Prisma.PostDelegate<DefaultArgs> = DB.connection.post;
 
 	/**
 	 * Retrieves all posts from the database.
@@ -49,14 +45,14 @@ export class Post {
 	 */
 	public static async all(): Promise<IPost[]> {
 		try {
-			const posts = await Post.prisma.post.findMany({
+			const posts = await Post.prisma.findMany({
 				include: {
 					user: true,
 				},
 			});
 			return posts;
 		} catch (error) {
-			console.info("Failed to fetch posts");
+			console.error("Failed to fetch posts");
 			throw new Error(error);
 		}
 	}
@@ -71,7 +67,7 @@ export class Post {
 	 */
 	public static async find(id: string): Promise<IPost | null> {
 		try {
-			const post = await Post.prisma.post.findUnique({
+			const post = await Post.prisma.findUnique({
 				where: { id },
 				include: {
 					user: true,
@@ -79,7 +75,7 @@ export class Post {
 			});
 			return post;
 		} catch (error) {
-			console.info("Failed to fetch the post");
+			console.error("Failed to fetch the post");
 			throw new Error(error);
 		}
 	}
@@ -92,14 +88,14 @@ export class Post {
 	 * @returns {Promise<IPost>} A promise that resolves to the created post.
 	 * @throws {Error} If there's an error creating the post.
 	 */
-	public static async create(data: any): Promise<IPost> {
+	public static async create(data: Prisma.PostCreateInput): Promise<IPost> {
 		try {
-			const post = await Post.prisma.post.create({
+			const post = await Post.prisma.create({
 				data,
 			});
 			return post;
 		} catch (error) {
-			console.info("Failed to create post");
+			console.error("Failed to create post");
 			throw new Error(error);
 		}
 	}
