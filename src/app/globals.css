@@ -28,7 +28,6 @@ header {
 
 main {
 	grid-area: main;
-	@apply debug;
 }
 
 footer {
