@@ -15,7 +15,7 @@ model User {
   password String
   image    String  @default("/imgs/noavatar.png")
   isAdmin  Boolean @default(false)
-  Post     Post[]
+  posts    Post[]
 }
 
 model Post {
