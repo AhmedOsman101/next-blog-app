@@ -4,8 +4,8 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("LOCAL_DB_URL")
-  // PRODUCTION_DB_URL
+  url      = env("PRODUCTION_DB_URL")
+  // LOCAL_DB_URL
 }
 
 model User {
