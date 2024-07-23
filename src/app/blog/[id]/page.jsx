@@ -1,4 +1,4 @@
-import { getPost } from "@/lib/Database";
+import { getPost } from "@/db/Database";
 import { FormattedDate } from "@/lib/Helpers";
 import Image from "next/image";
 
