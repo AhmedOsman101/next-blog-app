@@ -1,4 +1,4 @@
-import { getPost } from "@/db/Database";
+import { getPost } from "@/db/models/Post";
 import { FormattedDate } from "@/lib/Helpers";
 import Image from "next/image";
 

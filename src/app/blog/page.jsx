@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import EmptyResource from "@/components/EmptyResource";
-import { getAllPosts } from "@/db/Database";
+import { getAllPosts } from "@/db/models/Post";
 
 export const metadata = {
 	title: "Blogs Page",
