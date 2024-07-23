@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
 import { TbLogout } from "react-icons/tb";
+import { APP_NAME } from "@/lib/Helpers";
 
 /**
  * @typedef {Object} NavLink
@@ -29,8 +30,6 @@ const links = [
 
 const isAuth = true;
 const isAdmin = true;
-
-const APP_NAME = process.env.APP_NAME || "Next Blog App";
 
 const Navbar = () => {
 	return (

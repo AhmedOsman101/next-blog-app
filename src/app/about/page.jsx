@@ -1,7 +1,9 @@
+import { GenerateTitle } from "@/lib/Helpers";
 import Image from "next/image";
 
 export const metadata = {
-	title: "About Page",
+	title: GenerateTitle("About"),
+	description: "Learn more about our agency and what we do",
 };
 
 const About = () => {

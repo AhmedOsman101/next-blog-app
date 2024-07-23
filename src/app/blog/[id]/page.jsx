@@ -1,6 +1,17 @@
 import { Post } from "@/db/models/Post";
-import { FormattedDate } from "@/lib/Helpers";
+import { FormattedDate, GenerateTitle } from "@/lib/Helpers";
 import Image from "next/image";
+
+export const generateMetadata = async ({ params }) => {
+	const { id } = params;
+
+	const post = await Post.find(id);
+
+	return {
+		title: GenerateTitle(post.title),
+		description: post.body,
+	};
+};
 
 const SinglePost = async ({ params }) => {
 	const { id } = params;

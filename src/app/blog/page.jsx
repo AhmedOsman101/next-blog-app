@@ -1,9 +1,11 @@
 import Card from "@/components/Card";
 import EmptyResource from "@/components/EmptyResource";
 import { Post } from "@/db/models/Post";
+import { GenerateTitle } from "@/lib/Helpers";
 
 export const metadata = {
-	title: "Blogs Page",
+	title: GenerateTitle("Blog"),
+	description: "A list of all blog posts",
 };
 
 const Blog = async () => {

@@ -1,6 +1,12 @@
 const validator = require("validator");
 
 /**
+ * The name of the application, retrieved from the environment variables.
+ * @constant {string}
+ */
+const APP_NAME = process.env.APP_NAME;
+
+/**
  * @typedef {Object} InputFields
  * @property {string} [username] - The username to validate.
  * @property {string} [name] - The name to validate.
@@ -140,4 +146,19 @@ const FormattedDate = (date) => {
 	return intl.format(dateObject);
 };
 
-module.exports = { Validator, StringLimit, FormattedDate };
+/**
+ * Generates a formatted title for the application.
+ * @param {string} title - The specific page or section title.
+ * @returns {string} A formatted string combining the app name and the provided title.
+ */
+const GenerateTitle = (title) => {
+	return `${APP_NAME} | ${title}`;
+};
+
+module.exports = {
+	APP_NAME,
+	Validator,
+	StringLimit,
+	FormattedDate,
+	GenerateTitle,
+};

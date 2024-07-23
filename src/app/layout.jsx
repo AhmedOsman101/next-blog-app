@@ -3,6 +3,7 @@ import "./globals.css";
 import dotenv from "dotenv";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
+import { APP_NAME } from "@/lib/Helpers";
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ const font = DM_Sans({
 });
 
 export const metadata = {
-	title: process.env.APP_NAME,
+	title: APP_NAME,
 	description: "Fullstack web application built with Next.Js 14",
 };
 

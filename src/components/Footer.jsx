@@ -1,6 +1,5 @@
+import { APP_NAME } from "@/lib/Helpers";
 import Link from "next/link";
-
-const APP_NAME = process.env.APP_NAME;
 
 const Footer = () => {
 	return (
