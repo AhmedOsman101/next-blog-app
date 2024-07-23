@@ -23,7 +23,6 @@ const validator = require("validator");
  *
  * @returns {ValidationResult} An object containing validation results.
  */
-
 const Validator = (data) => {
 	const errors = {};
 	let result = {};
@@ -36,6 +35,7 @@ const Validator = (data) => {
 			// displaying a custom message for password confirmation errors
 			if (key === "password_confirmation") {
 				errors[key] = `Confirm password field is required`;
+				continue;
 			}
 
 			// default message for other empty fields
