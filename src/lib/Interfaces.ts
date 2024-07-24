@@ -77,3 +77,14 @@ export interface IPost {
 	created_at?: Date;
 	user?: IUser;
 }
+
+/**
+ * Represents the result of an authentication operation, containing any errors and the authenticated user (if successful).
+ * @interface IAuthReturn
+ * @property {IInputFields} errors - Any errors that occurred during the authentication process.
+ * @property {IUser | null} [user] - The authenticated user, if the authentication was successful.
+ */
+export interface IAuthReturn {
+	errors: IInputFields | null;
+	user?: IUser | null;
+}

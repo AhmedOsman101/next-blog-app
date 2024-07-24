@@ -133,3 +133,24 @@ export const FormattedDate = (date: string | number | Date): string => {
 export const GenerateTitle = (title: string): string => {
 	return `${APP_NAME} | ${title}`;
 };
+
+/**
+ * Checks if an object is empty.
+ *
+ * This function uses Object.entries() to determine if the given object
+ * has any own enumerable string-keyed properties. An object is considered
+ * empty if it has no such properties.
+ *
+ * @param object - The object to check for emptiness.
+ * @returns Returns true if the object is empty, false otherwise.
+ *
+ * @example
+ * const emptyObj = {};
+ * const nonEmptyObj = { key: 'value' };
+ *
+ * console.log(IsEmptyObject(emptyObj));     // true
+ * console.log(IsEmptyObject(nonEmptyObj));  // false
+ */
+export const IsEmptyObject = (object: object): boolean => {
+	return Object.entries(object).length === 0;
+};
