@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
-export const Loader = () => {
+export const Loader = (): void => {
 	MySwal.fire({
 		title: "Loading...",
 		html: `
@@ -16,11 +16,11 @@ export const Loader = () => {
 };
 
 export const Success = (
-	title = "Succeed!",
-	html,
-	link = null,
+	title: string | HTMLElement | JQuery = "Succeed!",
+	html: string | HTMLElement | JQuery,
+	link: string = null,
 	navigate = null
-) => {
+): void => {
 	MySwal.fire({
 		title,
 		html,
@@ -31,7 +31,10 @@ export const Success = (
 	});
 };
 
-export const Fail = (title = "Oops...", text) => {
+export const Fail = (
+	title: string | HTMLElement | JQuery = "Oops...",
+	text: string
+): void => {
 	MySwal.fire({
 		icon: "error",
 		title,
@@ -39,13 +42,16 @@ export const Fail = (title = "Oops...", text) => {
 	});
 };
 
-export const Close = () => {
+export const Close = (): void => {
 	MySwal.close();
 };
 
-export const InfoAC = (msg, duration = 2500) => {
-	return MySwal.fire({
-		title: msg,
+export const InfoAC = (
+	title: string | HTMLElement | JQuery,
+	duration: number = 2500
+): void => {
+	MySwal.fire({
+		title: title,
 		icon: "info",
 		timer: duration,
 		allowEscapeKey: false,
