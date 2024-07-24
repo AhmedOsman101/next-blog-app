@@ -3,7 +3,7 @@ import "./globals.css";
 import dotenv from "dotenv";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
-import { APP_NAME } from "@/lib/Helpers";
+import { APP_NAME } from "@/lib/Constants";
 
 dotenv.config();
 
@@ -21,7 +21,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en" className="dark">
+		<html
+			lang="en"
+			className="dark">
 			<body
 				className={`${font.className} bg-gray-950 text-gray-100 min-h-dvh`}>
 				<Navbar />

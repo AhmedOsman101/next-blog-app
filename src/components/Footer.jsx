@@ -1,4 +1,4 @@
-import { APP_NAME } from "@/lib/Helpers";
+import { APP_NAME } from "@/lib/Constants";
 import Link from "next/link";
 
 const Footer = () => {

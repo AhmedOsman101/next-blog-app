@@ -1,11 +1,7 @@
+import { APP_NAME } from "./Constants";
 import { IInputFields, IValidationResults } from "./Interfaces";
 
 const validator = require("validator");
-
-/**
- * The name of the application, retrieved from the environment variables.
- * @constant  */
-export const APP_NAME = process.env.APP_NAME;
 
 /**
  * Validates an object containing user input data.

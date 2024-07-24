@@ -1,7 +1,8 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
 import { TbLogout } from "react-icons/tb";
-import { APP_NAME } from "@/lib/Helpers";
+import { APP_NAME } from "@/lib/Constants";
+import { Auth } from "@/lib/Auth";
 
 /**
  * @typedef {Object} NavLink
@@ -28,8 +29,8 @@ const links = [
 	},
 ];
 
-const isAuth = true;
-const isAdmin = true;
+const isAuth = Auth.check();
+const isAdmin = Auth.user?.isAdmin;
 
 const Navbar = () => {
 	return (
