@@ -13,7 +13,7 @@ model User {
   name     String
   email    String  @unique
   password String
-  image    String  @default("/imgs/noavatar.png")
+  image    String
   isAdmin  Boolean @default(false)
   posts    Post[]
 }
