@@ -1,28 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { DefaultArgs } from "@prisma/client/runtime/library";
 import DB from "../PrismaConnection";
-import { IUser } from "./User";
-
-/**
- * Represents a blog post in the application.
- * @interface IPost
- * @property {string} id - Unique identifier for the post.
- * @property {string} title - Title of the post.
- * @property {string} body - Main content of the post.
- * @property {string} [image] - Optional URL to an image associated with the post.
- * @property {string} user_id - Identifier of the user who created the post.
- * @property {Date} [created_at] - Timestamp of when the post was created.
- * @property {IUser} [user] - User object associated with the post.
- */
-export interface IPost {
-	id: string;
-	title: string;
-	body: string;
-	image?: string;
-	user_id: string;
-	created_at?: Date;
-	user?: IUser;
-}
+import { IPost } from "@/lib/Interfaces";
 
 /**
  * Class representing post operations in the database.

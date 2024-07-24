@@ -1,28 +1,7 @@
 import { Prisma } from "@prisma/client";
 import DB from "../PrismaConnection";
-import { IPost } from "./Post";
+import { IUser } from "@/lib/Interfaces";
 import { DefaultArgs } from "@prisma/client/runtime/library";
-
-/**
- * Represents a user in the application.
- * @interface IUser
- * @property {string} id - Unique identifier for the user.
- * @property {string} name - Name of the user.
- * @property {string} email - Email address of the user.
- * @property {string} password - Hashed password of the user.
- * @property {string} [image] - Optional URL to the user's profile image.
- * @property {boolean} [isAdmin] - Indicates whether the user has admin privileges.
- * @property {IPost[]} [posts] - Array of posts associated with the user.
- */
-export interface IUser {
-	id?: string;
-	name: string;
-	email: string;
-	password: string;
-	image?: string;
-	isAdmin?: boolean;
-	posts?: IPost[] | [];
-}
 
 /**
  * Class representing user operations in the database.

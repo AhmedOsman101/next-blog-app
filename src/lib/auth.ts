@@ -1,11 +1,7 @@
-import { IUser, User } from "@/db/models/User";
+import { User } from "@/db/models/User";
 import { compare, genSalt, hash } from "bcryptjs";
-import { IInputFields, Validator } from "./Helpers";
-
-interface IAuthError {
-	message: string;
-	code: string;
-}
+import { Validator } from "./Helpers";
+import { IUser, IInputFields, IAuthError } from "./Interfaces";
 
 export class Auth {
 	public static user: IUser | null = null;

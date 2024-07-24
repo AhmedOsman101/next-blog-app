@@ -1,42 +1,11 @@
+import { IInputFields, IValidationResults } from "./Interfaces";
+
 const validator = require("validator");
 
 /**
  * The name of the application, retrieved from the environment variables.
  * @constant  */
 export const APP_NAME = process.env.APP_NAME;
-
-/**
- * Defines the shape of input fields that need to be validated.
- *
- * @interface IInputFields
- * @property {string} [username] - The username field.
- * @property {string} [name] - The name field.
- * @property {string} [email] - The email field.
- * @property {string} [password] - The password field.
- * @property {string} [password_confirmation] - The password confirmation field.
- * @property {string} [message] - The message field.
- */
-export interface IInputFields {
-	username?: string;
-	name?: string;
-	email?: string;
-	password?: string;
-	password_confirmation?: string;
-	message?: string;
-}
-
-/**
- * Defines the shape of the validation result.
- *
- * @interface IValidationResult
- * @property {IInputFields} errors - An object containing validation errors for each field.
- * @property {boolean} isValid - A flag indicating whether the validation was successful.
- */
-
-export interface IValidationResults {
-	errors: IInputFields;
-	isValid: boolean;
-}
 
 /**
  * Validates an object containing user input data.
