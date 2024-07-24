@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
-import { TbLogout } from "react-icons/tb";
+import LogoutButton from "./Logout";
 import { APP_NAME } from "@/lib/Constants";
 import { Auth } from "@/lib/Auth";
 
@@ -29,10 +29,9 @@ const links = [
 	},
 ];
 
-const isAuth = Auth.check();
-const isAdmin = Auth.user?.isAdmin;
-
 const Navbar = () => {
+	const isAuth = Auth.check();
+	const isAdmin = Auth.user?.isAdmin;
 	return (
 		<>
 			<header className="p-4 sticky top-0 bg-gray-950 z-[999]">
@@ -62,13 +61,16 @@ const Navbar = () => {
 									/>
 								)}
 
-								<button className="flex space-x-2 rounded-lg px-4 py-3 items-center bg-blue-500 self-center">
-									<span className="text-white">Logout</span>
-									<TbLogout />
-								</button>
+								<LogoutButton />
 							</>
 						) : (
-							<NavLink link={{ label: "Login", to: "/login" }} />
+							<div className="self-center">
+								<Link
+									href="/login"
+									className="rounded-lg px-5 py-3 bg-blue-500">
+									Login
+								</Link>
+							</div>
 						)}
 					</div>
 					<button className="flex justify-end p-4 md:hidden">

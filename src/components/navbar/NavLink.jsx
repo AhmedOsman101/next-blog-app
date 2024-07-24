@@ -16,7 +16,6 @@ const NavLink = ({ link }) => {
 		<>
 			<li className="flex">
 				<Link
-					rel="noopener noreferrer"
 					href={link.to}
 					className={`flex items-center px-4 -mb-1 border-b-2 ${
 						active
