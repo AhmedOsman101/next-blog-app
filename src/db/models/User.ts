@@ -25,7 +25,7 @@ export class User {
 	 */
 	public static async all(
 		withPosts: boolean = false
-	): Promise<IUser[] | false> {
+	): Promise<IUser[] | null> {
 		try {
 			const users = await User.prisma.findMany({
 				include: {
@@ -35,7 +35,7 @@ export class User {
 			return users;
 		} catch (error) {
 			console.error("Failed to fetch users", error);
-			return false;
+			return null;
 		}
 	}
 
@@ -51,7 +51,7 @@ export class User {
 	public static async find(
 		id: string,
 		withPosts: boolean = false
-	): Promise<IUser | null | false> {
+	): Promise<IUser | null> {
 		try {
 			const user = User.prisma.findUnique({
 				where: { id },
@@ -65,14 +65,14 @@ export class User {
 			return user;
 		} catch (error) {
 			console.error("Failed to fetch the user", error);
-			return false;
+			return null;
 		}
 	}
 
 	public static async findWith(
 		field: string,
 		value: any
-	): Promise<IUser | null | false> {
+	): Promise<IUser | null> {
 		try {
 			const user = await User.prisma.findFirst({
 				where: {
@@ -82,7 +82,7 @@ export class User {
 			return user ?? null;
 		} catch (error) {
 			console.error("Failed to find user by field/value", error);
-			return false;
+			return null;
 		}
 	}
 

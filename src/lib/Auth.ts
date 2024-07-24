@@ -4,7 +4,7 @@ import { Validator } from "./Helpers";
 import { IUser, IAuthError, IAuthReturn } from "./Interfaces";
 
 export class Auth {
-	public static user: IUser | null;
+	protected static user: IUser | null;
 	public static async login(
 		email: string,
 		password: string
@@ -96,6 +96,15 @@ export class Auth {
 			console.error("Registration failed");
 			throw new AuthError(error, "REGISTRATION FAILED");
 		}
+	}
+
+	public static async get(): Promise<IUser | null> {
+		if (Auth.check()) {
+			Auth.user = await User.find(Auth.user.id);
+			return Auth.user;
+		}
+
+		return null;
 	}
 
 	public static logout(): void {
