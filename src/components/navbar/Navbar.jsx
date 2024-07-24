@@ -31,7 +31,7 @@ const links = [
 
 const Navbar = () => {
 	const isAuth = Auth.check();
-	const isAdmin = Auth.user?.isAdmin;
+	const isAdmin = Auth.authUser?.isAdmin;
 	return (
 		<>
 			<header className="p-4 sticky top-0 bg-gray-950 z-[999]">

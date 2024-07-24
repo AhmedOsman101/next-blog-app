@@ -2,9 +2,15 @@ import { User } from "@/db/models/User";
 import { compare, genSalt, hash } from "bcryptjs";
 import { Validator } from "./Helpers";
 import { IUser, IAuthError, IAuthReturn } from "./Interfaces";
+import jwt from "jsonwebtoken";
 
 export class Auth {
-	protected static user: IUser | null;
+	protected static authUser: IUser | null;
+	protected static authToken: string;
+
+	private static readonly JWT_SECRET: string = process.env.JWT_SECRET;
+	private static readonly TOKEN_EXPIRY: string = "1d";
+
 	public static async login(
 		email: string,
 		password: string
@@ -35,10 +41,13 @@ export class Auth {
 			}
 
 			// On successful login store the user
-			Auth.user = user;
+			Auth.authUser = user;
+
+			// Generate JWT token
+			Auth.authToken = Auth.generateToken(user);
 
 			// Return the user
-			return { errors: null, user: Auth.user };
+			return { errors: null, user: Auth.authUser };
 		} catch (error) {
 			console.info("Login failed");
 			throw new AuthError(error, "LOGIN FAILED");
@@ -88,42 +97,67 @@ export class Auth {
 			}
 
 			// On successful register store the user
-			Auth.user = user;
+			Auth.authUser = user;
 
 			// Return the user
-			return { errors: null, user: Auth.user };
+			return { errors: null, user: Auth.authUser };
 		} catch (error) {
 			console.error("Registration failed");
 			throw new AuthError(error, "REGISTRATION FAILED");
 		}
 	}
 
-	public static async get(): Promise<IUser | null> {
+	protected static async get(): Promise<IUser | null> {
 		if (Auth.check()) {
-			Auth.user = await User.find(Auth.user.id);
-			return Auth.user;
+			Auth.authUser = await User.find(Auth.authUser.id);
+			return Auth.authUser;
 		}
 
 		return null;
 	}
 
+	public static async user() {
+		await Auth.get();
+		return Auth.authUser;
+	}
+
 	public static logout(): void {
-		Auth.user = null;
+		Auth.authUser = null;
 	}
 
 	public static check(): boolean {
-		return Auth.user ? true : false;
+		return Auth.authUser ? true : false;
 	}
 
 	// Placeholder methods for future JWT implementation
-	public static generateToken(user: IUser): string {
-		// TODO: Implement JWT token generation
-		return "";
+	private static generateToken(user: IUser): string {
+		const payload = {
+			id: user.id,
+		};
+
+		const token = jwt.sign(payload, Auth.JWT_SECRET, {
+			expiresIn: Auth.TOKEN_EXPIRY,
+		});
+
+		return token;
 	}
 
-	public static verifyToken(token: string): IUser | null {
-		// TODO: Implement JWT token verification
-		return null;
+	public static async verifyToken(token: string): Promise<IUser> {
+		try {
+			const decoded = jwt.verify(token, this.JWT_SECRET) as {
+				id: string;
+			};
+			const user = await User.find(decoded.id);
+
+			if (!user) {
+				throw new AuthError("User not found", "USER_NOT_FOUND");
+			}
+
+			return user;
+		} catch (error) {
+			console.info(error);
+			throw new AuthError("Invalid token", "INVALID_TOKEN");
+		}
 	}
 }
 
